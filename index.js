@@ -1,18 +1,14 @@
 const core = require('@actions/core');
-const wait = require('./wait');
-
+const write = require('./action');
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const ms = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
-
-    core.debug((new Date()).toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info((new Date()).toTimeString());
-
-    core.setOutput('time', new Date().toTimeString());
+    const path = core.getInput('path');
+    const secret = core.getInput('secret');
+    core.info(`Writing secret to ${path}`);
+    await write(path, secret);
+    
   } catch (error) {
     core.setFailed(error.message);
   }
