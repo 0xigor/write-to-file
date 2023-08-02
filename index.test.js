@@ -8,7 +8,7 @@ test('test runs', () => {
   const testString = 'TEST';
   
   process.env['INPUT_PATH'] = "./test.txt";  
-  process.env['INPUT_SECRET'] = Buffer.from(testString).toString('base64');
+  process.env['INPUT_CONTENT'] = Buffer.from(testString).toString('base64');
   
   const ip = path.join(__dirname, 'index.js');
   const result = cp.execSync(`node ${ip}`, {env: process.env}).toString();

@@ -2847,7 +2847,7 @@ const write = __nccwpck_require__(582);
 async function run() {
   try {
     const path = core.getInput('path');
-    const secret = core.getInput('secret');
+    const secret = core.getInput('content');
     core.info(`Writing secret to ${path}`);
     await write(path, secret);
     
