@@ -2849,7 +2849,9 @@ async function run() {
   try {
     const path = core.getInput('path');
     const secret = core.getInput('content');
+
     core.info(`Writing secret to ${path}`);
+    core.info(secret);
     await write(path, secret);
     
   } catch (error) {
