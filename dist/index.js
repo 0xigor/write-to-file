@@ -4,11 +4,12 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /***/ 582:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const { writeFile } = __nccwpck_require__(977);
+const { writeFile, chmod } = __nccwpck_require__(977);
 
 async function write(path, secret) {
   const content = Buffer.from(secret, 'base64');
-  writeFile(path, content.toString('ascii'));
+  await writeFile(path, content.toString('ascii'));
+  await chmod(path, 440 )
 }
 
 module.exports = write;
